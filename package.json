@@ -1,12 +1,26 @@
 {
   "name": "home-api",
+  "type": "module",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "start": "bun run src/app.ts",
+    "dev": "bun run --watch src/app.ts",
+    "test": "bun test",
+    "install-browser": "bunx playwright install chromium",
+    "migrate": "bun run src/database/migrations.ts",
+    "collect": "bun run src/collectors/feeCollector.ts",
+    "build": "bun build src/app.ts --outdir ./dist --target node --external electron --external chromium-bidi",
+    "type-check": "bun run --check src/app.ts"
   },
   "dependencies": {
-    "hono": "^4.9.4"
+    "hono": "^4.9.4",
+    "node-cron": "^3.0.3",
+    "playwright": "^1.46.0",
+    "@hono/mcp": "latest",
+    "@modelcontextprotocol/sdk": "^1.5.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/node-cron": "^3.0.11"
   }
 }
